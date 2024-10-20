@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837706493390",
+    "project_id": "dvt-weather-assessment",
+    "storage_bucket": "dvt-weather-assessment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837706493390:android:0187433001442a9f650f9f",
+        "android_client_info": {
+          "package_name": "com.dvt.weather"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmSYtVXQ3jEqMVtIHQy0ikwjc1nEImS3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
