@@ -1,4 +1,4 @@
-package com.example.dvt_weather
+package com.dvt.weather
 
 import io.flutter.embedding.android.FlutterActivity
 
