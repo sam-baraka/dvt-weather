@@ -63,7 +63,7 @@ void main() {
       );
 
       // Assert
-      expect(result, isA<Weather>());
+      expect(result, isA<WeatherData>());
       verify(() => mockDio.get(
             url,
             queryParameters: {
@@ -71,6 +71,7 @@ void main() {
               'lon': lon,
               'appid': apiKey,
               'units': 'metric',
+              'exclude': 'minutely,hourly',
             },
           )).called(1);
     });

@@ -58,7 +58,7 @@ void main() {
                   apiKey: 'testApiKey',
                 ))
             .thenAnswer(
-                (_) async => Weather.fromJson(Constants().successfulData));
+                (_) async => WeatherData.fromJson(Constants().successfulData));
       },
       build: () => weatherCubit,
       act: (cubit) => cubit.getWeather(),
