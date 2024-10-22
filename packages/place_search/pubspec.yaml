@@ -1,0 +1,20 @@
+name: place_search
+description: "A new Flutter package project."
+version: 0.0.1
+
+environment:
+  sdk: ^3.5.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mocktail: ^1.0.4
+  dio:
+  shared_utils:
+    path: ../shared_utils
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
