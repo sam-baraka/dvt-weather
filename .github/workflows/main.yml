@@ -13,63 +13,57 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.24.3
+          flutter-version: '3.24.3'
+          channel: 'stable'
 
-      # Step to set up Java 17
       - name: Set up Java 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # Step to install Firebase CLI
-      - name: Install Firebase CLI
-        run: curl -sL https://firebase.tools | bash
-
-      # Authenticate with Firebase using the service account key
-      - name: Authenticate Firebase
+      # Install Firebase CLI and configure Firebase
+      - name: Setup Firebase
         run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > $HOME/firebase-key.json
-          gcloud auth activate-service-account --key-file=$HOME/firebase-key.json
-          gcloud --quiet config set project YOUR_PROJECT_ID
-        env:
-          GCP_PROJECT: YOUR_PROJECT_ID
+          curl -sL https://firebase.tools | bash
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="firebase-key.json"
+          firebase login:ci
 
-      # Step to generate firebase_options.dart for a specific Firebase project
+      - name: Install FlutterFire CLI
+        run: dart pub global activate flutterfire_cli
+
       - name: Generate Firebase options
-        run: flutterfire configure --project=dvt-weather-assessment
+        run: |
+          flutterfire configure \
+            --project=dvt-weather-assessment \
+            --platforms=android \
+            --yes
 
       - name: Get dependencies
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release  # Include --release for release mode
+        run: flutter build apk --release
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v3
         with:
           name: android-app
-          path: build/app/outputs/apk/release/app-release.apk  # Update path if needed
+          path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Create GitHub Release (if tag)
-        uses: ncipollo/release-action@v1
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')  # Only on tag push
-        env:
-          GITHUB_TOKEN: ${{ github.token }}  # Access token with release permissions
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        id: create_release
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}  # Use full ref to extract tag later
-          artifacts: /tmp/app/app-release.apk  # Reference uploaded artifact
-          release_name: ${{ steps.extract_tag_name.outputs.tag_name }}
-          body: "Automatic release for tag ${{ steps.extract_tag_name.outputs.tag_name }}"  # Optional release description
-
-      - name: Extract Tag Name (helper step)
-        id: extract_tag_name  # Define an id for output access
-        run: |
-          # Regex to extract tag name from full ref (adjust if needed)
-          tag_name=$(echo "${{ github.token }}" | sed 's/^refs\/tags\///')
-          echo "::set-output name=tag_name::$tag_name"  # Set output variable
+          files: build/app/outputs/flutter-apk/app-release.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
