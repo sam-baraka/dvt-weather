@@ -20,6 +20,7 @@ mixin _$WeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
     required TResult Function(WeatherData weather) fetched,
     required TResult Function(String message) error,
   }) =>
@@ -28,6 +29,7 @@ mixin _$WeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
     TResult? Function(WeatherData weather)? fetched,
     TResult? Function(String message)? error,
   }) =>
@@ -36,6 +38,7 @@ mixin _$WeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
     TResult Function(WeatherData weather)? fetched,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$WeatherState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_Error value) error,
   }) =>
@@ -53,6 +57,7 @@ mixin _$WeatherState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_Error value)? error,
   }) =>
@@ -61,6 +66,7 @@ mixin _$WeatherState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
     TResult Function(_Fetched value)? fetched,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -110,12 +116,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WeatherState.initial'));
   }
 
   @override
@@ -132,6 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
     required TResult Function(WeatherData weather) fetched,
     required TResult Function(String message) error,
   }) {
@@ -143,6 +156,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
     TResult? Function(WeatherData weather)? fetched,
     TResult? Function(String message)? error,
   }) {
@@ -154,6 +168,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
     TResult Function(WeatherData weather)? fetched,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -169,6 +184,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_Error value) error,
   }) {
@@ -180,6 +196,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_Error value)? error,
   }) {
@@ -191,6 +208,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
     TResult Function(_Fetched value)? fetched,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -227,12 +245,18 @@ class __$$FetchingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchingImpl implements _Fetching {
+class _$FetchingImpl with DiagnosticableTreeMixin implements _Fetching {
   const _$FetchingImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.fetching()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WeatherState.fetching'));
   }
 
   @override
@@ -249,6 +273,7 @@ class _$FetchingImpl implements _Fetching {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
     required TResult Function(WeatherData weather) fetched,
     required TResult Function(String message) error,
   }) {
@@ -260,6 +285,7 @@ class _$FetchingImpl implements _Fetching {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
     TResult? Function(WeatherData weather)? fetched,
     TResult? Function(String message)? error,
   }) {
@@ -271,6 +297,7 @@ class _$FetchingImpl implements _Fetching {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
     TResult Function(WeatherData weather)? fetched,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -286,6 +313,7 @@ class _$FetchingImpl implements _Fetching {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_Error value) error,
   }) {
@@ -297,6 +325,7 @@ class _$FetchingImpl implements _Fetching {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_Error value)? error,
   }) {
@@ -308,6 +337,7 @@ class _$FetchingImpl implements _Fetching {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
     TResult Function(_Fetched value)? fetched,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -321,6 +351,174 @@ class _$FetchingImpl implements _Fetching {
 
 abstract class _Fetching implements WeatherState {
   const factory _Fetching() = _$FetchingImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchedPlaceImplCopyWith<$Res> {
+  factory _$$SearchedPlaceImplCopyWith(
+          _$SearchedPlaceImpl value, $Res Function(_$SearchedPlaceImpl) then) =
+      __$$SearchedPlaceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Place place});
+}
+
+/// @nodoc
+class __$$SearchedPlaceImplCopyWithImpl<$Res>
+    extends _$WeatherStateCopyWithImpl<$Res, _$SearchedPlaceImpl>
+    implements _$$SearchedPlaceImplCopyWith<$Res> {
+  __$$SearchedPlaceImplCopyWithImpl(
+      _$SearchedPlaceImpl _value, $Res Function(_$SearchedPlaceImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WeatherState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? place = null,
+  }) {
+    return _then(_$SearchedPlaceImpl(
+      null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as Place,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchedPlaceImpl
+    with DiagnosticableTreeMixin
+    implements _SearchedPlace {
+  const _$SearchedPlaceImpl(this.place);
+
+  @override
+  final Place place;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WeatherState.searchedPlace(place: $place)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherState.searchedPlace'))
+      ..add(DiagnosticsProperty('place', place));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchedPlaceImpl &&
+            (identical(other.place, place) || other.place == place));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, place);
+
+  /// Create a copy of WeatherState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchedPlaceImplCopyWith<_$SearchedPlaceImpl> get copyWith =>
+      __$$SearchedPlaceImplCopyWithImpl<_$SearchedPlaceImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
+    required TResult Function(WeatherData weather) fetched,
+    required TResult Function(String message) error,
+  }) {
+    return searchedPlace(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
+    TResult? Function(WeatherData weather)? fetched,
+    TResult? Function(String message)? error,
+  }) {
+    return searchedPlace?.call(place);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
+    TResult Function(WeatherData weather)? fetched,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (searchedPlace != null) {
+      return searchedPlace(place);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
+    required TResult Function(_Fetched value) fetched,
+    required TResult Function(_Error value) error,
+  }) {
+    return searchedPlace(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
+    TResult? Function(_Fetched value)? fetched,
+    TResult? Function(_Error value)? error,
+  }) {
+    return searchedPlace?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
+    TResult Function(_Fetched value)? fetched,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (searchedPlace != null) {
+      return searchedPlace(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchedPlace implements WeatherState {
+  const factory _SearchedPlace(final Place place) = _$SearchedPlaceImpl;
+
+  Place get place;
+
+  /// Create a copy of WeatherState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchedPlaceImplCopyWith<_$SearchedPlaceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -358,15 +556,23 @@ class __$$FetchedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchedImpl implements _Fetched {
+class _$FetchedImpl with DiagnosticableTreeMixin implements _Fetched {
   const _$FetchedImpl(this.weather);
 
   @override
   final WeatherData weather;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.fetched(weather: $weather)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherState.fetched'))
+      ..add(DiagnosticsProperty('weather', weather));
   }
 
   @override
@@ -393,6 +599,7 @@ class _$FetchedImpl implements _Fetched {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
     required TResult Function(WeatherData weather) fetched,
     required TResult Function(String message) error,
   }) {
@@ -404,6 +611,7 @@ class _$FetchedImpl implements _Fetched {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
     TResult? Function(WeatherData weather)? fetched,
     TResult? Function(String message)? error,
   }) {
@@ -415,6 +623,7 @@ class _$FetchedImpl implements _Fetched {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
     TResult Function(WeatherData weather)? fetched,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -430,6 +639,7 @@ class _$FetchedImpl implements _Fetched {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_Error value) error,
   }) {
@@ -441,6 +651,7 @@ class _$FetchedImpl implements _Fetched {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_Error value)? error,
   }) {
@@ -452,6 +663,7 @@ class _$FetchedImpl implements _Fetched {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
     TResult Function(_Fetched value)? fetched,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -510,15 +722,23 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   const _$ErrorImpl(this.message);
 
   @override
   final String message;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherState.error(message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherState.error'))
+      ..add(DiagnosticsProperty('message', message));
   }
 
   @override
@@ -545,6 +765,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetching,
+    required TResult Function(Place place) searchedPlace,
     required TResult Function(WeatherData weather) fetched,
     required TResult Function(String message) error,
   }) {
@@ -556,6 +777,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? fetching,
+    TResult? Function(Place place)? searchedPlace,
     TResult? Function(WeatherData weather)? fetched,
     TResult? Function(String message)? error,
   }) {
@@ -567,6 +789,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetching,
+    TResult Function(Place place)? searchedPlace,
     TResult Function(WeatherData weather)? fetched,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -582,6 +805,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_SearchedPlace value) searchedPlace,
     required TResult Function(_Fetched value) fetched,
     required TResult Function(_Error value) error,
   }) {
@@ -593,6 +817,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Fetching value)? fetching,
+    TResult? Function(_SearchedPlace value)? searchedPlace,
     TResult? Function(_Fetched value)? fetched,
     TResult? Function(_Error value)? error,
   }) {
@@ -604,6 +829,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_SearchedPlace value)? searchedPlace,
     TResult Function(_Fetched value)? fetched,
     TResult Function(_Error value)? error,
     required TResult orElse(),
