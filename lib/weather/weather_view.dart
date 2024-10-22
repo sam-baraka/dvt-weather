@@ -127,6 +127,9 @@ class WeatherView extends StatelessWidget {
                           child: CupertinoTextFormFieldRow(
                             controller: searchController,
                             placeholder: 'Search place',
+                            placeholderStyle: const TextStyle(
+                              color: Colors.white,
+                            ),
                             prefix: const Icon(
                               Icons.place,
                               color: Colors.white,
