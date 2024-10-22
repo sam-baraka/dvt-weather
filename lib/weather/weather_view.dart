@@ -11,7 +11,6 @@ import 'package:intl/intl.dart';
 import 'package:open_weather_api/open_weather_api.dart';
 
 class WeatherView extends StatelessWidget {
-  final WeatherData weather;
   WeatherView(
       {super.key,
       required this.weather,
@@ -22,8 +21,9 @@ class WeatherView extends StatelessWidget {
   final FavoritesPersistenceService favoritesPersistenceService;
 
   final formKey = GlobalKey<FormState>();
+  final WeatherData weather;
 
-  TextEditingController searchController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

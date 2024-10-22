@@ -12,7 +12,7 @@ jobs:
     name: Build, Upload, and Create Release
     runs-on: ubuntu-latest
     env:
-      ANDROID_PACKAGE_NAME: com.dvt.weather  # Updated package name
+      ANDROID_PACKAGE_NAME: com.dvt.weather
       IOS_PACKAGE_NAME: com.dvt.weather
     steps:
       - name: Checkout repository
@@ -38,7 +38,6 @@ jobs:
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
           export GOOGLE_APPLICATION_CREDENTIALS="firebase-key.json"
-          # Create a minimal firebase.json
           echo '{
             "hosting": {
               "public": "public",
@@ -49,7 +48,6 @@ jobs:
               ]
             }
           }' > firebase.json
-          # Initialize the project
           mkdir -p public
           firebase projects:list --token '${{ secrets.FIREBASE_TOKEN }}'
           firebase use dvt-weather-assessment --token '${{ secrets.FIREBASE_TOKEN }}'
@@ -79,19 +77,34 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      # Generate release notes from git commits
+      - name: Generate Release Notes
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "# Release Notes for ${{ github.ref_name }}" > RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "## Changes in this version:" >> RELEASE_NOTES.md
+          git log $(git describe --tags --abbrev=0 HEAD^)..HEAD --pretty=format:"* %s" >> RELEASE_NOTES.md
+
+      # Create GitHub Release with artifacts
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+          body_path: RELEASE_NOTES.md
+          draft: false
+          prerelease: false
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Upload artifact for non-release builds
       - name: Upload APK as artifact
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v3
         with:
           name: android-app
           path: build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/')
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: build/app/outputs/flutter-apk/app-release.apk
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
