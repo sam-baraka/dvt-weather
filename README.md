@@ -139,22 +139,17 @@ The application follows a four-layer architecture pattern:
 ### Code Organization
 ```
 lib/
-├── data/
+├── feature/
 │   ├── models/
-│   ├── repositories/
-│   └── sources/
-├── domain/
-│   ├── entities/
-│   ├── repositories/
-│   └── usecases/
-├── presentation/
-│   ├── bloc/
-│   ├── pages/
-│   └── widgets/
-└── core/
-    ├── constants/
-    ├── utils/
-    └── extensions/
+│   ├── presentation/
+│   └── utilities/
+packages/
+├── package/
+│   ├── src/
+        └── models/
+        └── services/
+│   ├── package.dart
+│   
 ```
 
 ### Best Practices
