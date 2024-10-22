@@ -12,7 +12,8 @@ jobs:
     name: Build, Upload, and Create Release
     runs-on: ubuntu-latest
     env:
-      ANDROID_PACKAGE_NAME: com.dvt.weather
+      ANDROID_PACKAGE_NAME: com.dvt.weather  # Updated package name
+      IOS_PACKAGE_NAME: com.dvt.weather
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -59,27 +60,15 @@ jobs:
       - name: Add FlutterFire CLI to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
-      # Create a temporary flutterfire config file
-      - name: Create FlutterFire Config
-        run: |
-          echo '{
-            "platforms": {
-              "android": {
-                "applicationId": "${{ env.ANDROID_PACKAGE_NAME }}"
-              }
-            }
-          }' > .firebaserc.json
-
       - name: Generate Firebase options
         run: |
           flutterfire configure \
             --project=dvt-weather-assessment \
-            --platforms=android \
+            --platforms=android,ios \
             --android-package-name=${{ env.ANDROID_PACKAGE_NAME }} \
-            --no-apply-gradle-plugins \
+            --ios-bundle-id=${{ env.ANDROID_PACKAGE_NAME }} \
             --yes \
-            --out lib/firebase_options.dart \
-            --config=.firebaserc.json
+            --token '${{ secrets.FIREBASE_TOKEN }}'
 
       - name: Get dependencies
         run: flutter pub get
