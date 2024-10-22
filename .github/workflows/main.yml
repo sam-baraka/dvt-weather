@@ -67,6 +67,7 @@ jobs:
             --platforms=android,ios \
             --android-package-name=${{ env.ANDROID_PACKAGE_NAME }} \
             --ios-bundle-id=${{ env.ANDROID_PACKAGE_NAME }} \
+            --macos-bundle-id=${{ env.ANDROID_PACKAGE_NAME }} \
             --yes \
             --token '${{ secrets.FIREBASE_TOKEN }}'
 
