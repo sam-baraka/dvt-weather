@@ -11,6 +11,8 @@ jobs:
   build_and_release:
     name: Build, Upload, and Create Release
     runs-on: ubuntu-latest
+    env:
+      ANDROID_PACKAGE_NAME: com.dvt.weather  # Updated package name
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -57,19 +59,12 @@ jobs:
       - name: Add FlutterFire CLI to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
-      # Read the package name from pubspec.yaml or use a direct value
-      - name: Extract Package Name
-        id: package-name
-        run: |
-          PACKAGE_NAME=$(grep "name:" pubspec.yaml | awk '{print $2}')
-          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
-
       - name: Generate Firebase options
         run: |
           flutterfire configure \
             --project=dvt-weather-assessment \
             --platforms=android \
-            --android-package-name=com.dvt.weather \
+            --android-package-name=${{ env.ANDROID_PACKAGE_NAME }} \
             --yes \
             --token '${{ secrets.FIREBASE_TOKEN }}'
 
