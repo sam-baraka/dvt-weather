@@ -1,6 +1,7 @@
+
 import 'package:dio/dio.dart';
 import 'package:open_weather_api/src/models/weather.dart';
-import 'package:open_weather_api/src/utilities/rest_client.dart';
+import 'package:shared_utils/shared_utils.dart';
 
 class OpenWeatherClient {
   OpenWeatherClient({RestClient? restClient})

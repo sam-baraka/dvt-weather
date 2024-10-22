@@ -10,9 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^5.7.0
-  pretty_dio_logger: ^1.4.0
   mocktail: ^1.0.4
+  dio:
+  shared_utils:
+    path: ../shared_utils
+
 
 
 

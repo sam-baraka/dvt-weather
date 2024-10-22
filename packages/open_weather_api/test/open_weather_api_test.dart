@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:open_weather_api/src/models/weather.dart';
-import 'package:open_weather_api/src/utilities/rest_client.dart';
 import 'package:open_weather_api/src/open_weather_client.dart';
+import 'package:shared_utils/shared_utils.dart';
 
 import 'constants.dart';
 
