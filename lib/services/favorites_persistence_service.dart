@@ -2,13 +2,23 @@ import 'package:dvt_weather/favorites/models/favorite.dart';
 import 'package:hive/hive.dart';
 
 class FavoritesPersistenceService {
-  final Box<List<Favorite>> favoriteBox = Hive.box<List<Favorite>>('favorites');
+  final Box favoriteBox = Hive.box('favorites');
 
-  saveFavorites(List<Favorite> favorites) {
-    favoriteBox.put('favorites', favorites);
+  addFavorite(favorite) {
+    final favorites = getFavorites();
+    favorites.add(favorite);
+    saveFavorites(favorites);
   }
 
-  List<Favorite> getFavorites() {
-    return favoriteBox.get('favorites') ?? [];
+  saveFavorites(favorites) {
+    favoriteBox.put('favorites', favorites.map((e) => e.toJson()).toList());
+  }
+
+  getFavorites() {
+    final favorites = favoriteBox.get('favorites') ?? [];
+
+    return favorites.map((e) {
+      return Favorite.fromJson(e);
+    }).toList();
   }
 }
