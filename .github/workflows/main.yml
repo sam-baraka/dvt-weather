@@ -99,7 +99,7 @@ jobs:
           name: Release ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GTH_TKN }}
 
       # Upload artifact for non-release builds
       - name: Upload APK as artifact
